@@ -15,5 +15,6 @@ public class Window extends JFrame {
         this.setVisible(true);
         System.out.println("Width: " + canv.getWidth() + ", Height: " + canv.getHeight());
         canv.init();
+        canv.animateBalls();
     }
 }

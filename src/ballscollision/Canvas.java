@@ -1,9 +1,9 @@
 package ballscollision;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class Canvas extends JPanel {
     private Random rand = new Random();
@@ -34,11 +34,24 @@ public class Canvas extends JPanel {
     }
 
     private void drawCircle(Graphics g) {
-        System.out.println("Drawing...");
         for (Ball b : balls) {
             int r = b.getR();
             g.drawOval(b.getX() - r, b.getY() - r, 2 * r, 2 * r);
         }
+    }
+
+    public void animateBalls() {
+        Timer t = new Timer(50, e -> moveBalls());
+        t.start();
+    }
+
+    public void moveBalls() {
+        for (Ball b : balls) {
+            if (b.getX() < this.getWidth()) {
+                b.setX(b.getX() + 1);
+            }
+        }
+        repaint();
     }
 }
 
