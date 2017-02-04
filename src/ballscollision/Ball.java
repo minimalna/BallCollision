@@ -4,11 +4,16 @@ public class Ball {
     int x;
     int y;
     int r;
+    int vx;
+    int vy;
 
-    public Ball(int x, int y, int r) {
-    this.r = r;
-    this.x = x;
-    this.y =y;
+
+    public Ball(int x, int y, int r, int vx, int vy) {
+        this.r = r;
+        this.x = x;
+        this.y = y;
+        this.vx = vx;
+        this.vy = vy;
     }
 
     public int getX() {
@@ -34,4 +39,12 @@ public class Ball {
     public void setR(int r) {
         this.r = r;
     }
+    public int getVx() {
+        return vx;
+    }
+
+    public int getVy() {
+        return vy;
+    }
+
 }
