@@ -2,14 +2,15 @@ package ballscollision;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Canvas extends JPanel {
     private Random rand = new Random();
     private int num = rand.nextInt(27) + 3;
-    private int[][] circleData = new int[num][3];
+    private ArrayList<Ball> balls = new ArrayList<>();
 
-    public Canvas(int width, int height) {
+    Canvas(int width, int height) {
         init(width, height);
     }
 
@@ -28,17 +29,17 @@ public class Canvas extends JPanel {
             }
             int x = rand.nextInt(width - 2 * r) + r;
             int y = rand.nextInt(height - 2 * r) + r;
-            circleData[i][0] = r;
-            circleData[i][1] = x;
-            circleData[i][2] = y;
+            Ball ball = new Ball(x, y, r);
+            balls.add(ball);
+
         }
     }
 
-    public void drawCircle(Graphics g) {
+    private void drawCircle(Graphics g) {
         System.out.println("Drawing...");
-        for(int[] oneCircleData : circleData){
-            int r = oneCircleData[0];
-            g.drawOval(oneCircleData[1] - r, oneCircleData[2] - r, 2 * r, 2 * r);
+        for(Ball b : balls){
+            int r = b.getR();
+            g.drawOval(b.getX() - r, b.getY() - r, 2 * r, 2 * r);
         }
     }
 }
