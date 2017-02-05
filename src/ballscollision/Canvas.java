@@ -7,7 +7,6 @@ import java.util.*;
 
 public class Canvas extends JPanel {
     private Random rand = new Random();
-    private int num = rand.nextInt(27) + 3;
     private ArrayList<Ball> balls = new ArrayList<>();
 
     @Override
@@ -18,17 +17,15 @@ public class Canvas extends JPanel {
     }
 
     public void init() {
+        int num = 10; //rand.nextInt(27) + 3;
         int width = this.getWidth();
         int height = this.getHeight();
         for (int i = 0; i < num; i++) {
-            int r = rand.nextInt(80) + 20;
-            while (2 * r >= width || 2 * r >= height) {
-                r = rand.nextInt(80) + 20;
-            }
+            int r = 20; //rand.nextInt(10) + 20;
             int x = rand.nextInt(width - 2 * r) + r;
             int y = rand.nextInt(height - 2 * r) + r;
-            int vx = rand.nextInt(20)-10;
-            int vy = rand.nextInt(20)-10;
+            int vx = rand.nextInt(20) - 10;
+            int vy = rand.nextInt(20) - 10;
             Ball ball = new Ball(x, y, r, vx, vy);
             balls.add(ball);
 
@@ -49,11 +46,21 @@ public class Canvas extends JPanel {
 
     public void moveBalls() {
         for (Ball b : balls) {
-            if (b.getX() < this.getWidth()) {
-                b.setX(b.getX() + b.getVx());
+            int x = b.getX();
+            int y = b.getY();
+            int r = b.getR();
+
+            if (x >= (this.getWidth() - r) || (x <= r)) {
+                b.setVx(-b.getVx());
             }
-            b.setY(b.getY()+b.getVy());
+            if ((y >= this.getHeight() - r) || (y <= r)) {
+                b.setVy(-b.getVy());
+            }
+
+            b.setX(x + b.getVx());
+            b.setY(y + b.getVy());
         }
+
         repaint();
     }
 }

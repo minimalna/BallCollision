@@ -47,4 +47,11 @@ public class Ball {
         return vy;
     }
 
+    public void setVx(int vx) {
+        this.vx = vx;
+    }
+
+    public void setVy(int vy) {
+        this.vy = vy;
+    }
 }
