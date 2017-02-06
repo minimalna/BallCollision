@@ -6,6 +6,7 @@ public class Ball {
     int r;
     int vx;
     int vy;
+    boolean collided = false;
 
 
     public Ball(int x, int y, int r, int vx, int vy) {
@@ -53,5 +54,13 @@ public class Ball {
 
     public void setVy(int vy) {
         this.vy = vy;
+    }
+
+    public boolean isCollided() {
+        return collided;
+    }
+
+    public void setCollided(boolean collided) {
+        this.collided = collided;
     }
 }
